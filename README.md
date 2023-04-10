@@ -1,4 +1,8 @@
-Here I am going to add all about he project
+## JobTracker
+
+The application where user can register/ login and then he/she can create job applications and keep track of them. 
+
+The other user should not be able to see one user's data. So, this restriction can be done using tokens(JWT). Every time, the user registers or logs in, we will send back this token and then once we send back the token, with every future request, we will be sending back this token to the server where we will be validating it(token). The library we use for this is - jsonwebtoken
 
 
 ## Error handling - 
