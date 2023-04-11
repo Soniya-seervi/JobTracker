@@ -17,3 +17,10 @@ Hashing the password is a one way street i.e. Once the passwords are hashed, it 
 next when a user enters password for login, we just compare the hash values.
 
 Here, I have used bcryptjs library.
+
+## Register User Frontend
+We set up the controller at server and then handle it at front end.
+
+-> When the user enters the details required, on clicking the submit button, the alert shows that the user created successfully and redirects to the dashboard page. If there is any error, then the danger alert is shown on the form. 
+-> While the user creating request is send, the submit button gets disabled to prevent the user from sending request again and again.
+-> When the user is registered, the user data, token and location is stored in the local storage as the data in the components is removed on refreshing the page.
