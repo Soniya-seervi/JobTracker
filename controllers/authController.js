@@ -46,7 +46,7 @@ const login = async(req, res) => {
     user.password = undefined   // This is being done so that we do not get the password in response
     res.status(StatusCodes.OK).json({user, token, location:user.location})
 
-    res.send('login user')
+    // res.send('login user')
 }
 
 const updateUser = async(req, res) => {
