@@ -30,3 +30,4 @@ We set up the controller at server and then handle it at front end.
 -> Check if email and password are provided by the user
 -> Check if user exits by checking the email and finding the match
 -> Check if password is correct by comparing the passwords.
+
