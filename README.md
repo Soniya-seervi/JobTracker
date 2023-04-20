@@ -33,3 +33,6 @@ We set up the controller at server and then handle it at front end.
 
 ## Authentication Server Setup
 Every time the user makes requests, it has some tokens attached to it which needs to be verified before trying to fulfill the user's request. This is done to avoid someone else from getting access to the user's data and preventing him from tempering the data.
+
+## Job component 
+the edit button is will redirect to the edit job page 
