@@ -60,7 +60,7 @@ const updateJob = async (req, res) => {
 const showStats = async (req, res) => {
     let stats = await Job.aggregate([
         {$match:{createdBy: new mongoose.Types.ObjectId(req.user.userId)}},   // aggregating jobs belonging to certain user(using userId)
-        {$group: {_id: '$status', count: { $sum: 1}}}    // aggreagating jobs on the basis of status of the job
+        {$group: {_id: '$status', count: { $sum: 1}}}    // aggregating jobs on the basis of status of the job
     ])
 
     stats = stats.reduce((acc, curr) => {
