@@ -2,6 +2,8 @@ import Job from "../models/Job.js"
 import {StatusCodes} from 'http-status-codes'
 import {BadRequestError, NotFoundError, UnAuthenticatedError} from '../errors/index.js'
 import checkPermissions from "../utils/checkPermissions.js"
+import mongoose from "mongoose"
+
 
 const createJob = async (req, res) => {
     const {position, company} = req.body    
@@ -56,7 +58,27 @@ const updateJob = async (req, res) => {
 }
 
 const showStats = async (req, res) => {
-    res.send('show status')
+    let stats = await Job.aggregate([
+        {$match:{createdBy: new mongoose.Types.ObjectId(req.user.userId)}},   // aggregating jobs belonging to certain user(using userId)
+        {$group: {_id: '$status', count: { $sum: 1}}}    // aggreagating jobs on the basis of status of the job
+    ])
+
+    stats = stats.reduce((acc, curr) => {
+        const {_id: title, count} = curr
+        acc[title] = count
+        return acc
+    }, {})
+
+    // Setting some default value so that if the user is new and has no jobs or less jobs, we can at least prevent the front end from breaking.
+    const defaultStats = {
+        pending: stats.pending || 0,
+        interview: stats.interview || 0,
+        declined: stats.declined || 0
+    }
+
+    let monthlyApplications= []
+
+    res.status(StatusCodes.OK).json({defaultStats, monthlyApplications})
 }
 
 export {createJob, deleteJob, getAllJobs, updateJob, showStats}
